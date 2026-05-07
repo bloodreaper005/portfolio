@@ -20,7 +20,7 @@ const Footer = () => (
 // ─── App ───────────────────────────────────────────────────────
 function App() {
   return (
-    <BrowserRouter basename="/portfolio/">
+    <BrowserRouter>
       <div className="relative min-h-screen bg-[#0a0a0b]">
         <Background />
         <Navbar />
