@@ -52,7 +52,7 @@ export const projects = [
     summary:
       "Developed a ROS2 autonomous insertion framework on a UR5e, fusing real-time force-torque feedback with vision-based optimization to resolve sub-2mm positional uncertainty during contact-rich assembly tasks. Built a Python perception-to-action pipeline with Docker-based deployment, validated in Gazebo simulation before hardware execution across varying cable geometries.",
     tags: ["ROS2", "UR5e", "Force-Torque", "Vision", "Gazebo", "Docker"],
-    accent: "#06b6d4",
+    accent: "#228B22",
   },
   {
     title: "Tilt-Rotor VTOL QuadPlane",
@@ -60,7 +60,7 @@ export const projects = [
     summary:
       "Spearheaded ground-up CAD design and structural optimization of a bespoke VTOL from initial BOM through aerodynamic analysis and rapid prototyping. Tuned ArduPlane control loops for hover stability and tilt-rotor transition, executing ground tests and flight envelope expansion while reviewing telemetry logs to validate VTOL-to-forward-flight handoff.",
     tags: ["VTOL", "ArduPlane", "Pixhawk", "CAD", "Flight Testing", "Aerodynamics"],
-    accent: "#3b82f6",
+    accent: "#164A41",
   },
   {
     title: "Multi-Mission Pick-and-Place Robot",
@@ -68,7 +68,7 @@ export const projects = [
     summary:
       "Designed a custom stainless steel chassis and integrated a 6-DOF UR5-style arm via Arduino Mega for inverse kinematics and 1 kg pick-and-place tasks. Maintained full BOM and GD&T-compliant drawings throughout the design and fabrication cycle.",
     tags: ["6-DOF Arm", "Inverse Kinematics", "GD&T", "Arduino", "Mechanical Design"],
-    accent: "#f59e0b",
+    accent: "#9A7D3A",
   },
   {
     title: "Powered Glider with Autonomous Control",
@@ -76,7 +76,7 @@ export const projects = [
     summary:
       "Designed a 16-oz powered glider using CFD simulations with ANSYS Fluent and XFLR5. Implemented YOLO-v4 vision processing on a Raspberry Pi for autonomous landing, achieving 90% landing accuracy in flight tests.",
     tags: ["CFD", "ANSYS Fluent", "XFLR5", "YOLO-v4", "Raspberry Pi", "Autonomous Flight"],
-    accent: "#8b5cf6",
+    accent: "#5B8C5A",
   },
   {
     title: "Phishing Detection via Federated Learning",
@@ -84,7 +84,7 @@ export const projects = [
     summary:
       "Developed a federated learning model for detecting phishing attacks with over 96% accuracy. Reduced training latency by 25% through adaptive client sampling while preserving user privacy across distributed clients.",
     tags: ["TensorFlow", "Federated Learning", "Python", "Security", "Privacy"],
-    accent: "#ec4899",
+    accent: "#7A5C3A",
   },
   {
     title: "Fingerprint Image Classification",
@@ -92,7 +92,7 @@ export const projects = [
     summary:
       "Built a CNN-based classifier for fingerprint patterns using federated learning. Achieved 98% accuracy with the Adam optimizer and data augmentation across distributed training nodes.",
     tags: ["CNN", "Deep Learning", "OpenCV", "Federated Learning", "Image Classification"],
-    accent: "#34d399",
+    accent: "#D1B284",
   },
 ];
 

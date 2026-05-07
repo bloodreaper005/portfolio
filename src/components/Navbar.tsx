@@ -13,12 +13,8 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
+  useEffect(() => { setMenuOpen(false); }, [location]);
 
-  // Detect scroll for blur/border transition
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -30,52 +26,36 @@ export const Navbar = () => {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled
-            ? "rgba(10, 10, 11, 0.85)"
-            : "rgba(10, 10, 11, 0.0)",
+          background: scrolled ? "rgba(244,241,232,0.92)" : "rgba(244,241,232,0.0)",
           backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(255,255,255,0.06)"
-            : "1px solid transparent",
+          borderBottom: scrolled ? "1px solid rgba(209,178,132,0.4)" : "1px solid transparent",
         }}
       >
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-          {/* Logo / Name */}
-          <NavLink
-            to="/"
-            className="flex items-center gap-2 group"
-            style={{ textDecoration: "none" }}
-          >
+          {/* Logo */}
+          <NavLink to="/" className="flex items-center gap-2 group" style={{ textDecoration: "none" }}>
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-all duration-300 group-hover:scale-110"
-              style={{
-                background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-                color: "#fff",
-              }}
+              style={{ background: "linear-gradient(135deg, #228B22, #164A41)", color: "#F4F1E8" }}
             >
               SP
             </div>
-            <span
-              className="font-semibold tracking-tight hidden sm:block"
-              style={{ color: "#fafafa" }}
-            >
+            <span className="font-semibold tracking-tight hidden sm:block" style={{ color: "#164A41" }}>
               Sanat Pednekar
             </span>
           </NavLink>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === "/"}
-                className="relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group"
+                className="relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
                 style={({ isActive }) => ({
-                  color: isActive ? "#60a5fa" : "#a1a1aa",
-                  background: isActive
-                    ? "rgba(59,130,246,0.08)"
-                    : "transparent",
+                  color: isActive ? "#228B22" : "#4a6741",
+                  background: isActive ? "rgba(34,139,34,0.08)" : "transparent",
                   textDecoration: "none",
                 })}
               >
@@ -85,7 +65,7 @@ export const Navbar = () => {
                     {isActive && (
                       <span
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                        style={{ background: "#3b82f6" }}
+                        style={{ background: "#228B22" }}
                       />
                     )}
                   </>
@@ -93,16 +73,15 @@ export const Navbar = () => {
               </NavLink>
             ))}
 
-            {/* Resume button */}
             <a
               href="/Sanat_Pednekar_Resume.pdf"
               download
-              className="ml-3 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/20"
+              className="ml-3 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
               style={{
-                background: "rgba(59,130,246,0.15)",
-                border: "1px solid rgba(59,130,246,0.3)",
-                color: "#60a5fa",
+                background: "#228B22",
+                color: "#F4F1E8",
                 textDecoration: "none",
+                boxShadow: "0 2px 8px rgba(34,139,34,0.25)",
               }}
             >
               Resume ↓
@@ -113,11 +92,7 @@ export const Navbar = () => {
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg transition-colors duration-200"
-            style={{
-              background: menuOpen ? "rgba(255,255,255,0.06)" : "transparent",
-              border: "none",
-              cursor: "pointer",
-            }}
+            style={{ background: menuOpen ? "rgba(22,74,65,0.08)" : "transparent", border: "none", cursor: "pointer" }}
             aria-label="Toggle menu"
           >
             {[0, 1, 2].map((i) => (
@@ -127,15 +102,11 @@ export const Navbar = () => {
                 style={{
                   width: i === 1 && menuOpen ? "60%" : "100%",
                   height: "2px",
-                  background: "#a1a1aa",
+                  background: "#164A41",
                   transform:
-                    menuOpen && i === 0
-                      ? "translateY(7px) rotate(45deg)"
-                      : menuOpen && i === 2
-                      ? "translateY(-7px) rotate(-45deg)"
-                      : menuOpen && i === 1
-                      ? "scaleX(0)"
-                      : "none",
+                    menuOpen && i === 0 ? "translateY(7px) rotate(45deg)"
+                    : menuOpen && i === 2 ? "translateY(-7px) rotate(-45deg)"
+                    : menuOpen && i === 1 ? "scaleX(0)" : "none",
                   opacity: menuOpen && i === 1 ? 0 : 1,
                 }}
               />
@@ -143,13 +114,13 @@ export const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile dropdown */}
         <div
           className="md:hidden overflow-hidden transition-all duration-300"
           style={{
             maxHeight: menuOpen ? "300px" : "0px",
-            background: "rgba(10,10,11,0.95)",
-            borderTop: menuOpen ? "1px solid rgba(255,255,255,0.06)" : "none",
+            background: "rgba(244,241,232,0.97)",
+            borderTop: menuOpen ? "1px solid rgba(209,178,132,0.4)" : "none",
           }}
         >
           <div className="px-6 py-4 flex flex-col gap-1">
@@ -160,10 +131,8 @@ export const Navbar = () => {
                 end={link.to === "/"}
                 className="px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200"
                 style={({ isActive }) => ({
-                  color: isActive ? "#60a5fa" : "#a1a1aa",
-                  background: isActive
-                    ? "rgba(59,130,246,0.08)"
-                    : "transparent",
+                  color: isActive ? "#228B22" : "#4a6741",
+                  background: isActive ? "rgba(34,139,34,0.08)" : "transparent",
                   textDecoration: "none",
                 })}
               >
@@ -174,12 +143,7 @@ export const Navbar = () => {
               href="/Sanat_Pednekar_Resume.pdf"
               download
               className="mt-2 px-4 py-3 rounded-lg text-sm font-semibold text-center"
-              style={{
-                background: "rgba(59,130,246,0.12)",
-                border: "1px solid rgba(59,130,246,0.25)",
-                color: "#60a5fa",
-                textDecoration: "none",
-              }}
+              style={{ background: "#228B22", color: "#F4F1E8", textDecoration: "none" }}
             >
               Download Resume
             </a>
@@ -187,7 +151,6 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* Spacer so content doesn't hide behind navbar */}
       <div style={{ height: "64px" }} />
     </>
   );

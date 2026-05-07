@@ -9,11 +9,17 @@ import ContactPage from "./pages/ContactPage";
 // ─── Footer ────────────────────────────────────────────────────
 const Footer = () => (
   <footer
-    className="py-8 px-6 text-center text-sm"
-    style={{ borderTop: "1px solid rgba(255,255,255,0.04)", color: "#52525b" }}
+    className="py-10 px-6 text-center text-sm"
+    style={{ background: "#164A41", color: "rgba(244,241,232,0.6)" }}
   >
-    <p>La Jolla, CA • 858-319-8463</p>
-    <p className="mt-1">© 2025 Sanat Pednekar</p>
+    <div
+      className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold mx-auto mb-4"
+      style={{ background: "rgba(244,241,232,0.12)", color: "#F4F1E8" }}
+    >
+      SP
+    </div>
+    <p style={{ color: "rgba(244,241,232,0.5)" }}>La Jolla, CA • 858-319-8463</p>
+    <p className="mt-1" style={{ color: "rgba(244,241,232,0.35)" }}>© 2025 Sanat Pednekar</p>
   </footer>
 );
 
@@ -21,7 +27,7 @@ const Footer = () => (
 function App() {
   return (
     <BrowserRouter>
-      <div className="relative min-h-screen bg-[#0a0a0b]">
+      <div className="relative min-h-screen" style={{ background: "#F4F1E8" }}>
         <Background />
         <Navbar />
 
@@ -37,7 +43,6 @@ function App() {
         <Footer />
       </div>
 
-      {/* Global animations */}
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(40px); }
@@ -51,10 +56,7 @@ function App() {
           0%   { opacity: 1; transform: translateY(0); }
           100% { opacity: 0; transform: translateY(8px); }
         }
-        * {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
         *::-webkit-scrollbar { display: none; }
         html { scroll-behavior: smooth; }
       `}</style>
