@@ -1,8 +1,10 @@
 import type { ReactNode } from "react";
-import { useScrollReveal } from "../hooks";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-// ─── FadeUp ────────────────────────────────────────────────────
-export const FadeUp = ({
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+export function FadeUp({
   children,
   delay = 0,
   className = "",
@@ -10,74 +12,19 @@ export const FadeUp = ({
   children: ReactNode;
   delay?: number;
   className?: string;
-}) => {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(60px)",
-        transition: `all 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
-// ─── SlideIn ───────────────────────────────────────────────────
-export const SlideIn = ({
-  children,
-  direction = "left",
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  direction?: "left" | "right";
-  delay?: number;
-  className?: string;
-}) => {
-  const { ref, isVisible } = useScrollReveal();
-  const x = direction === "left" ? -100 : 100;
   return (
-    <div
+    <motion.div
       ref={ref}
       className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateX(0)" : `translateX(${x}px)`,
-        transition: `all 1s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-      }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: EASE, delay }}
     >
       {children}
-    </div>
+    </motion.div>
   );
-};
-
-// ─── ScaleIn ───────────────────────────────────────────────────
-export const ScaleIn = ({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) => {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "scale(1)" : "scale(0.8)",
-        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+}

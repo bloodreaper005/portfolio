@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #F4F1E8;
-  color: #164A41;
+  color-scheme: dark;
+  --bg:         #0f0f0f;
+  --bg-subtle:  #131313;
+  --bg-raised:  #161616;
+  --bg-border:  #222222;
+  --text:       #e8e4d9;
+  --text-muted: #7a7570;
+  --accent:     #c8b89a;
+  --green:      #4ade80;
 }
 
-* {
+/* ─── Reset / base ─────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { display: none; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: #F4F1E8;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-.no-scrollbar {
-  scrollbar-width: none;
+/* ─── Typography ────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+.font-lora  { font-family: "Lora", Georgia, serif; }
+.font-inter { font-family: "Inter", system-ui, sans-serif; }
+
+/* ─── Section label (eyebrow) ───────────────────────────────── */
+.label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
+
+/* ─── Card base ─────────────────────────────────────────────── */
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--bg-border);
+  border-radius: 12px;
+  transition: border-color 0.25s ease;
+}
+.card:hover { border-color: #333; }
+
+/* ─── Tag pill ──────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 500;
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tag:hover { color: var(--text); border-color: #3a3a3a; }

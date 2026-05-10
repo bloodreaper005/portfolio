@@ -1,26 +1,29 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 
-export function useScrollReveal(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+const SECTION_IDS = ["hero", "about", "experience", "projects", "skills", "education"];
+
+export function useActiveSection(): string {
+  const [active, setActive] = useState("hero");
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const observers: IntersectionObserver[] = [];
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold }
-    );
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActive(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
 
-  return { ref, isVisible };
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  return active;
 }
